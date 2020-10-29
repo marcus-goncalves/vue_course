@@ -27,22 +27,31 @@
     <plan-picker></plan-picker>
 
   </div>
-  <script type="text/x-template" id='click-counter2-template'>
+  <script type="text/x-template" id="click-counter2-template">
     <div>
       <p>The counter at:</p>
       <button @click="count2++">{{count2}}</button>
     </div>
   </script>
 
-  <script text="text/x-template" id='plan-picker-template'>
-    <div class="plans">
-      <plan v-for="plan in plans" :name="plan" />
+  <script text="text/x-template" id="plan-picker-template">
+    <div>
+      <plan 
+        v-for="plan in plans" 
+        v-bind:name="plan" 
+        @select="selectPlan" 
+        v-bind:selected-plan="selectedPlan"
+      ></plan>
     </div>
   </script>
 
-  <script type="text/x-template" id='plan-template'>
+  <script type="text/x-template" id="plan-template">
     <div>
-      <div class="plan">
+      <div 
+        @click="select" 
+        class="plan" 
+        :class="{'active': isSelected}"
+      >
         <span>{{name}}</span>
       </div>
     </div>
