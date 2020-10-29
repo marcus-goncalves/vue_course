@@ -17,7 +17,7 @@ Vue.component('click-counter2', {
     }
 })
 
-let PlanComponent = {
+let PlanPickerItemComponent = {
     template: '#plan-template',
     props: {
         name: {
@@ -46,9 +46,9 @@ let PlanComponent = {
 }
 
 let PlanPickerComponent = {
-    template: '#plan-picker-template',
+    template: '#plan-picker-item-template',
     components: {
-        plan: PlanComponent
+        PlanPickerItem: PlanPickerItemComponent
     },
     data() {
         return {

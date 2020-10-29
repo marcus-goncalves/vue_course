@@ -34,14 +34,14 @@
     </div>
   </script>
 
-  <script text="text/x-template" id="plan-picker-template">
+  <script text="text/x-template" id="plan-picker-item-template">
     <div>
-      <plan 
+      <PlanPickerItem 
         v-for="plan in plans" 
         v-bind:name="plan" 
         @select="selectPlan" 
         v-bind:selected-plan="selectedPlan"
-      ></plan>
+      ></PlanPickerItem>
     </div>
   </script>
 
