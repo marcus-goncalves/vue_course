@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue.js Components</h1>
+
+    <div class="aula1">
+      <h1>Vue.js Components - First Example</h1>
+      <click-counter></click-counter> 
+    </div>
+
+    <div class="aula2">
+      <h1>Vue.js Components - Second Example</h1>
+      <click-counter2></click-counter2>
+    </div>
+
+    <div>
+      <h1>Coffee Plans</h1>
+
+      <h3>We travel the world to source the very best single origin coffee for you</h3>
+    </div>
+
+    <plan-picker></plan-picker>
+
+  </div>
+  <script type="text/x-template" id='click-counter2-template'>
+    <div>
+      <p>The counter at:</p>
+      <button @click="count2++">{{count2}}</button>
+    </div>
+  </script>
+
+  <script text="text/x-template" id='plan-picker-template'>
+    <div class="plans">
+      <plan v-for="plan in plans" :name="plan" />
+    </div>
+  </script>
+
+  <script type="text/x-template" id='plan-template'>
+    <div>
+      <div class="plan">
+        <span>{{name}}</span>
+      </div>
+    </div>
+  </script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="shopping-list">
+    <div>
+      <h2> {{ header }} </h2>
+      <button 
+        class="btn btn-primary"
+        v-if="state === 'default'"
+        @click="changeState('edit')"
+      >Add item</button>
+      <button 
+        class="btn btn-cancel"
+        v-else="state === edit"
+        @click="changeState('default')"
+      >Cancel</button>
+
+    </div>
+
+    <input type="text" v-model="dinHeader" />
+    <h4> {{ dinHeader }} </h4>
+
+    <div v-if="state === 'edit'">
+      <input 
+        type="text" 
+        v-model="newItem" 
+        placeholder="Fill that new item" 
+        @keyup.enter="saveItem"
+      />
+      {{ charCount }}/200
+      <button 
+        class="btn btn-primary"
+        :disabled="newItem.length === 0"
+        @click="saveItem"
+      >Save Item</button>
+    </div>
+
+    <ul>
+      <li 
+        v-for="item in reversedItems"
+        :class="{strikeout: item.purchased}"
+        @click="togglePurchased(item)"
+      >{{ item.label }}</li>
+    </ul>
+    <p v-if="items.length === 0">Congrats! No items</p>
+  </div>
+
+  <script src="http://www.unpkg.com/vue"></script>
+  <script>
+    var shoppingList = new Vue({
+      el: "#shopping-list",
+      data: {
+        header: 'Vue Course!',
+        dinHeader: 'Here Dinamics!',
+        state: 'default',
+        newItem: '',
+        items: [
+          {
+            label: '1 go go go',
+            purchased: true
+          },
+          {
+            label: '2 best time',
+            purchased: false
+          },
+          {
+            label: '3 awesom',
+            purchased: true
+          }
+        ]
+      },
+      computed: {
+          charCount() {
+              return this.newItem.length
+          },
+          reversedItems() {
+              return this.items.slice(0).reverse()
+          }
+      },
+      methods: {
+        saveItem: function() {
+            this.items.push({
+                label: this.newItem,
+                purchased: false
+            })
+            this.newItem = ''
+        },
+        changeState: function(newState) {
+            this.state = newState
+            this.newItem = ''
+        },
+        togglePurchased: function(item) {
+            item.purchased = !item.purchased
+        }
+      }
+    })
+  </script>
+</body>
+</html>
