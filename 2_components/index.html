@@ -23,8 +23,29 @@
 
       <h3>We travel the world to source the very best single origin coffee for you</h3>
     </div>
-
     <plan-picker></plan-picker>
+
+    <div class="aula3">
+      <h1>Component Fundamentals - Slots</h1>
+      <todo-item>
+        Buy Bananas
+        <template v-slot:description>
+          - Healthy for breakfast
+        </template>
+      </todo-item>
+      <todo-item>
+        Buy Chicken
+        <template #description>
+          - Good for Lunch with salad
+        </template>
+        <template #button-text>
+          Delete From List
+        </template>
+
+      </todo-item>
+      <todo-item>Buy Milk</todo-item>
+      <todo-item>Buy Potatoes</todo-item>
+    </div>
 
   </div>
   <script type="text/x-template" id="click-counter2-template">
@@ -56,8 +77,29 @@
       </div>
     </div>
   </script>
+
+  <script type="text/x-template" id="todo-item-template">
+    <div>
+      <input type="checkbox" v-model="completed">
+      <span :class="{done: completed}">
+        <slot></slot>
+      </span>
+      <slot name="description"></slot>
+      <button>
+        <slot name="button-text">Apply</slot>
+      </button>
+    </div>
+  </script>
+
   <script src="https://unpkg.com/vue"></script>
   <script src="app.js"></script>
+
+  <style>
+    .done {
+      color: green;
+      text-decoration: line-through;
+    }
+  </style>
 
 </body>
 </html>
