@@ -17,6 +17,15 @@ Vue.component('click-counter2', {
     }
 })
 
+Vue.component('todo-item', {
+    template: '#todo-item-template',
+    data() {
+        return {
+            completed: false
+        }
+    }
+})
+
 let PlanPickerItemComponent = {
     template: '#plan-template',
     props: {
